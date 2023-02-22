@@ -9,7 +9,7 @@ part 'signup_login_event.dart';
 part 'signup_login_state.dart';
 
 class SignUpLogInBloc extends Bloc<SignupLogin, SignUpLogInState> {
-  ClassRepo classRepo ;
+  ClassRepo classRepo;
 
   SignUpLogInBloc(this.classRepo) : super(SignUpLogInState()) {
     on<LogInEvent>((event, emit) async {
@@ -22,18 +22,14 @@ class SignUpLogInBloc extends Bloc<SignupLogin, SignUpLogInState> {
           isProfileUpdatedState: false,
         ),
       );
-      String res = "success";
-      // await CommonRepository.signUp(
-      //     event.parentsDataModel.email, event.parentsDataModel.password);
-      if (res == "success") {
-
+      bool res = await classRepo.submitClassDetails();
+      if (res ) {
         emit(
           state.copyWith(
             isLoadingState: false,
             isSuccessState: true,
           ),
         );
-
       } else {
         emit(
           state.copyWith(
@@ -41,11 +37,10 @@ class SignUpLogInBloc extends Bloc<SignupLogin, SignUpLogInState> {
             isSuccessState: false,
             isFailedState: true,
             isInitStateState: true,
-            errorMessage: res,
+            errorMessage: "error",
           ),
         );
       }
     });
-
   }
 }
