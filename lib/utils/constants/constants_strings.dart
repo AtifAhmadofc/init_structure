@@ -56,6 +56,9 @@ class ConstantStrings {
   static const String photo = "photo";
   static String date = "Date";
   static const String emailRequired = "Email required";
+  static const String unauthorizedError = "Please log in again.";
+  static const String forbiddenError = "Forbidden, Please log in again.";
+  static const String internetConnectionError = "Internet connection error";
 
 
 }
